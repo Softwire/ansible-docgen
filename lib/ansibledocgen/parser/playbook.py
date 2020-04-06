@@ -112,11 +112,11 @@ class PlaybookParser(object):
                 # Playbooks have a tasks dict key
                 if "tasks" in yaml_item:
                     tasks = yaml_item["tasks"]
-                # Loop through tasks
-                task_info = self.__get_task_info__(tasks)
-                if len(task_info) > 0:
-                    playbookentry["task_info"] += task_info
-                # Loop through Playbook tasks
+                    # Loop through tasks
+                    task_info = self.__get_task_info__(tasks)
+                    if len(task_info) > 0:
+                       playbookentry["task_info"] += task_info
+            # Loop through Playbook tasks
             if folder_content not in self.parserdata:
                 self.parserdata[folder_content] = []
             self.parserdata[folder_content].append(playbookentry)
