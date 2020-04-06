@@ -66,7 +66,7 @@ class HostVarsParser(object):
                             value = m.group(2)
         
                             # Set An Attribute
-                            if attribute.lower() == "author" or attribute.lower() == "description":
+                            if attribute.lower() == "author" or attribute.lower() == "description" or attribute.lower() == "remarks":
                                  structure[file_host_var][attribute.lower()] = value
                                  
                     yamldata = yaml.load(data, Loader=yaml.SafeLoader)

@@ -97,7 +97,7 @@ class PlaybookParser(object):
                     value = m.group(2)
 
                     # Set An Attribute
-                    if attribute.lower() == "author" or attribute.lower() == "description":
+                    if attribute.lower() == "author" or attribute.lower() == "description" or attribute.lower() == "remarks":
                         playbookentry[attribute.lower()] = value
 
             # Parse Task Names from playbook

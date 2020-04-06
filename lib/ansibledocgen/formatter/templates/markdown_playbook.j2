@@ -10,6 +10,10 @@
 > **Description:** {{ playbook['description'] }}
 
 {% endif -%}
+{% if 'remarks' in playbook -%}
+**Remarks:** {{ playbook['remarks'] }}
+
+{% endif -%}
 {% else -%}
 ## Playbook: [{{ playbook['name'] }}.yml]({{ playbook['name'] }}.yml)
 {% if 'author' in playbook -%}
@@ -18,6 +22,10 @@
 {% endif -%}
 {% if 'description' in playbook -%}
 > **Description:** {{ playbook['description'] }}
+
+{% endif -%}
+{% if 'remarks' in playbook -%}
+**Remarks:** {{ playbook['remarks'] }}
 
 {% endif -%}
 {% endif -%}
