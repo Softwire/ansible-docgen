@@ -120,44 +120,15 @@ class PlaybookParser(object):
                 if "roles" in yaml_item:
                     print(yaml_item)
                     roles = yaml_item["roles"]
+                    print(roles[0])
+                    print(roles[1])
+                    print(len(roles))
+                    for i in range(len(roles)):
+                        print(roles[i])
                     for role in roles:
-                        print(role)
-                    # roles = yaml_item["roles"]
-                    # # Loop through roles
-                    # role_info = self.__get_role_info__(roles)
-                    # if len(role_info) > 0:
-                    #    playbookentry["role_info"] += role_info
+                        playbookentry["role_info"] += role
+                     
             # Loop through Playbook tasks
             if folder_content not in self.parserdata:
                 self.parserdata[folder_content] = []
             self.parserdata[folder_content].append(playbookentry)
-        
-    # def __get_role_info__(self, roles):
-    #     '''
-    #     @param tasks: variable task type
-    #     @return: {'task_name': 'xxx', 'task_tags': ['xxx' | None ]} 
-    #         or false in case the no have the name tasks
-    #     @rtype: list of dicts
-    #     This Function go through all task and create the dict with task name \ 
-    #     and tags. In this function is possibly adding more variables.        
-    #     '''
-    #     task_info_list = []
-    #     if isinstance(roles, list):
-    #         for role in roles:
-    #             role_info_list += self.__get_role_info__(role)
-    #     else:
-    #         if "name" in roles:
-    #             task_info = {'task_name': None, 'task_tags': None}
-    #             task_name = tasks["name"]
-    #             task_info["task_name"] = task_name
-    #             if "tags" in tasks:
-    #                 if not tasks["tags"] == None:
-    #                     task_info["task_tags"] = tasks["tags"]
-    #             task_info_list.append(task_info)
-    #         if "always" in tasks:
-    #             task_info_list += self.__get_task_info__(tasks["always"])
-    #         if "block" in tasks:
-    #             task_info_list += self.__get_task_info__(tasks["block"])
-    #         if "rescue" in tasks:
-    #             task_info_list += self.__get_task_info__(tasks["rescue"])
-    #     return task_info_list
