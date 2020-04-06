@@ -1,6 +1,7 @@
 {% for playbook in data -%}
 {% if playbook['is_role'] -%}
 ## Role: [{{ playbook['name'] }}]({{ playbook['name'] }})
+
 {% if 'author' in playbook -%}
 > **Author:** {{ playbook['author'] }}
 
