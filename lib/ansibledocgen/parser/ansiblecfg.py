@@ -73,26 +73,14 @@ class AnsibleCfg(object):
             return role_full_paths
 
     def get_playbook_paths(self):
-        """ Crawl Directory structure excluding role roles_path
-        and find all .yml files """
+        """ Find all .yml files in main project directory"""
         playbooks = []
 
         # Find all .yml files in the project directory
-        for root, dirnames, filenames in os.walk(self.project):
-            for filename in fnmatch.filter(filenames, '*.yml'):
-                # Absolute path to file
-                fullpath = os.path.join(root, filename)
-
-                # Detect if this file is in a role
-                is_rolepath = False
-                for rolepath in self.get_role_paths():
-                    if re.match(r'^%s' % rolepath, fullpath):
-                        is_rolepath = True
-
-                # Do not search in roles
-                if not is_rolepath:
-                    playbooks.append(fullpath)
-
+        for item in os.listdir(self.project):
+            if fnmatch.fnmatchcase(item, '*.yml*'):
+                fullpath = os.path.join(self.project, item)
+                playbooks.append(fullpath)
         return playbooks
     
     def get_hosts_paths(self):

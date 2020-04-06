@@ -1,20 +1,4 @@
 {% for playbook in data -%}
-{% if playbook['is_role'] -%}
-## Role: [{{ playbook['name'] }}]({{ playbook['name'] }})
-
-{% if 'author' in playbook -%}
-> **Author:** {{ playbook['author'] }}
-
-{% endif -%}
-{% if 'description' in playbook -%}
-> **Description:** {{ playbook['description'] }}
-
-{% endif -%}
-{% if 'remarks' in playbook -%}
-**Remarks:** {{ playbook['remarks'] }}
-
-{% endif -%}
-{% else -%}
 ## Playbook: [{{ playbook['name'] }}.yml]({{ playbook['name'] }}.yml)
 {% if 'author' in playbook -%}
 > **Author:** {{ playbook['author'] }}
@@ -28,7 +12,7 @@
 **Remarks:** {{ playbook['remarks'] }}
 
 {% endif -%}
-{% endif -%}
+
 {% for task in playbook['task_info'] -%}
 > **Task:** {{ task['task_name'] }}
 

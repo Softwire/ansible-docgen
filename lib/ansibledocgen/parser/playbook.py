@@ -84,6 +84,7 @@ class PlaybookParser(object):
             playbookentry["relative_path"] = playbook
             playbookentry["name"] = name
             playbookentry["task_info"] = []
+            playbookentry["role_info"] = []
             playbookentry["is_role"] = self.is_role
 
             # Read file content into data
@@ -106,7 +107,7 @@ class PlaybookParser(object):
             if yamldata is None:
                 return
 
-            # Parase the Yaml
+            # Parse the Yaml
             for yaml_item in yamldata:
                 tasks = yaml_item
                 # Playbooks have a tasks dict key
@@ -116,7 +117,47 @@ class PlaybookParser(object):
                     task_info = self.__get_task_info__(tasks)
                     if len(task_info) > 0:
                        playbookentry["task_info"] += task_info
+                if "roles" in yaml_item:
+                    print(yaml_item)
+                    roles = yaml_item["roles"]
+                    for role in roles:
+                        print(role)
+                    # roles = yaml_item["roles"]
+                    # # Loop through roles
+                    # role_info = self.__get_role_info__(roles)
+                    # if len(role_info) > 0:
+                    #    playbookentry["role_info"] += role_info
             # Loop through Playbook tasks
             if folder_content not in self.parserdata:
                 self.parserdata[folder_content] = []
             self.parserdata[folder_content].append(playbookentry)
+        
+    # def __get_role_info__(self, roles):
+    #     '''
+    #     @param tasks: variable task type
+    #     @return: {'task_name': 'xxx', 'task_tags': ['xxx' | None ]} 
+    #         or false in case the no have the name tasks
+    #     @rtype: list of dicts
+    #     This Function go through all task and create the dict with task name \ 
+    #     and tags. In this function is possibly adding more variables.        
+    #     '''
+    #     task_info_list = []
+    #     if isinstance(roles, list):
+    #         for role in roles:
+    #             role_info_list += self.__get_role_info__(role)
+    #     else:
+    #         if "name" in roles:
+    #             task_info = {'task_name': None, 'task_tags': None}
+    #             task_name = tasks["name"]
+    #             task_info["task_name"] = task_name
+    #             if "tags" in tasks:
+    #                 if not tasks["tags"] == None:
+    #                     task_info["task_tags"] = tasks["tags"]
+    #             task_info_list.append(task_info)
+    #         if "always" in tasks:
+    #             task_info_list += self.__get_task_info__(tasks["always"])
+    #         if "block" in tasks:
+    #             task_info_list += self.__get_task_info__(tasks["block"])
+    #         if "rescue" in tasks:
+    #             task_info_list += self.__get_task_info__(tasks["rescue"])
+    #     return task_info_list
