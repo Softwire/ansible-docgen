@@ -16,8 +16,8 @@
 {% for role in playbook['role_info'] -%}
 > **Role:** {{ role }}
 
-{% for task in playbook['task_info'] -%}
-> **Task:** {{ task['task_name'] }}
+{% for task in playbook['task_names'] -%}
+> **Task:** {{ task }}
 
 
 

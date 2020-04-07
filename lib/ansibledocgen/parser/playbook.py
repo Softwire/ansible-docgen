@@ -92,7 +92,7 @@ class PlaybookParser(object):
             playbookentry = {}
             playbookentry["relative_path"] = playbook
             playbookentry["name"] = name
-            playbookentry["task_info"] = []
+            playbookentry["task_names"] = []
             playbookentry["role_info"] = []
             playbookentry["is_role"] = self.is_role
 
@@ -117,23 +117,20 @@ class PlaybookParser(object):
                 return
 
             # Parse the Yaml
+            task_names = []
             for yaml_item in yamldata:
-                tasks = yaml_item
                 # Playbooks have a tasks dict key
-                if "tasks" in yaml_item:
-                    tasks = yaml_item["tasks"]
-                    # Loop through tasks
-                    task_info = self.__get_task_info__(tasks)
-                    if len(task_info) > 0:
-                       playbookentry["task_info"] += task_info
+                if "name" in yaml_item:
+                    print(yaml_item["name"])
+                    task_names.append(yaml_item["name"])
                 if "roles" in yaml_item:
                     roles = yaml_item["roles"]
                     role_info = []
                     for i in range(len(roles)):
-                        print(roles[i])
                         role_info.append(roles[i])
+                        print(roles[i])
                     playbookentry["role_info"] = role_info
-                    print(playbookentry["role_info"])
+            playbookentry["task_names"] = task_names
             # Loop through Playbook tasks
             if folder_content not in self.parserdata:
                 self.parserdata[folder_content] = []
