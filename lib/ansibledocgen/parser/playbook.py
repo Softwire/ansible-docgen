@@ -54,15 +54,6 @@ class PlaybookParser(object):
                 task_info_list += self.__get_task_info__(tasks["rescue"])
 
         return task_info_list
-    
-    # def __get_role_info__(self, roles)
-    #     role_info_list = []
-    #     if isinstance(roles, list):
-    #         for role in roles:
-    #             role_info_list += self.__get_role_info__
-    #     else:
-    #         role_info = {'role_name': None}
-    #         role_name = role
 
     def parse_playbook(self, playbook):
         """ Parse an Individual Playbook """
