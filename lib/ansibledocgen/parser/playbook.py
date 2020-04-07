@@ -55,6 +55,15 @@ class PlaybookParser(object):
 
         return task_info_list
     
+    # def __get_role_info__(self, roles)
+    #     role_info_list = []
+    #     if isinstance(roles, list):
+    #         for role in roles:
+    #             role_info_list += self.__get_role_info__
+    #     else:
+    #         role_info = {'role_name': None}
+    #         role_name = role
+
     def parse_playbook(self, playbook):
         """ Parse an Individual Playbook """
         with codecs.open(playbook, "r", encoding="utf-8") as f:
@@ -118,16 +127,13 @@ class PlaybookParser(object):
                     if len(task_info) > 0:
                        playbookentry["task_info"] += task_info
                 if "roles" in yaml_item:
-                    print(yaml_item)
                     roles = yaml_item["roles"]
-                    print(roles[0])
-                    print(roles[1])
-                    print(len(roles))
+                    role_info = []
                     for i in range(len(roles)):
                         print(roles[i])
-                    for role in roles:
-                        playbookentry["role_info"] += role
-                     
+                        role_info.append(roles[i])
+                    playbookentry["role_info"] = role_info
+                    print(playbookentry["role_info"])
             # Loop through Playbook tasks
             if folder_content not in self.parserdata:
                 self.parserdata[folder_content] = []
