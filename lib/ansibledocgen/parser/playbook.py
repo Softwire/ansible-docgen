@@ -121,14 +121,12 @@ class PlaybookParser(object):
             for yaml_item in yamldata:
                 # Playbooks have a tasks dict key
                 if "name" in yaml_item:
-                    print(yaml_item["name"])
                     task_names.append(yaml_item["name"])
                 if "roles" in yaml_item:
                     roles = yaml_item["roles"]
                     role_info = []
                     for i in range(len(roles)):
                         role_info.append(roles[i])
-                        print(roles[i])
                     playbookentry["role_info"] = role_info
             playbookentry["task_names"] = task_names
             # Loop through Playbook tasks
