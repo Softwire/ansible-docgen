@@ -111,9 +111,9 @@ class PlaybookParser(object):
             task_names = []
             for yaml_item in yamldata:
                 # Playbooks have a tasks dict key
-                if "name" in yaml_item:
+                if "name" in yaml_item: # if here, we are parsing a role. Each task doesn't explicitly say `task`, so we look out for the `name` attribute instead 
                     task_names.append(yaml_item["name"])
-                if "roles" in yaml_item:
+                if "roles" in yaml_item: # if here, we are parsing a playbook and want to parse the items in the list following `roles`
                     roles = yaml_item["roles"]
                     role_info = []
                     for i in range(len(roles)):

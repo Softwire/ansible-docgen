@@ -73,7 +73,9 @@ class AnsibleCfg(object):
             return role_full_paths
 
     def get_playbook_paths(self):
-        """ Find all .yml files in main project directory"""
+        """ Find all .yml files in main project directory
+        This only gets the yaml files in the top directory; this is not recursive through the full structure of the project
+        """
         playbooks = []
 
         # Find all .yml files in the project directory
